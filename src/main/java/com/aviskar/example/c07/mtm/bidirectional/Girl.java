@@ -1,18 +1,18 @@
-package com.aviskar.example.c02.oto;
+package com.aviskar.example.c07.mtm.bidirectional;
 
-import javax.persistence.CascadeType;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "boy")
-public class Boy {
+@Table(name = "girl")
+public class Girl {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +29,10 @@ public class Boy {
 	@Column
 	private String phoneNo;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "girl_id")
-	private Girl girl;
+	@ManyToMany(mappedBy = "girls")
+	private Set<Boy> boys;
 
-	public Boy(String name) {
+	public Girl(String name) {
 		this.name = name;
 	}
 
@@ -77,11 +76,11 @@ public class Boy {
 		this.phoneNo = phoneNo;
 	}
 
-	public Girl getGirl() {
-		return girl;
+	public Set<Boy> getBoys() {
+		return boys;
 	}
 
-	public void setGirl(Girl girl) {
-		this.girl = girl;
+	public void setBoys(Set<Boy> boys) {
+		this.boys = boys;
 	}
 }

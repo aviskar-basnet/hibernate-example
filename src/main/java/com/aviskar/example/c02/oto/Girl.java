@@ -26,6 +26,10 @@ public class Girl {
 	@Column
 	private String phoneNo;
 
+	public Girl(String name) {
+		this.name = name;
+	}
+
 	public Long getId() {
 		return id;
 	}

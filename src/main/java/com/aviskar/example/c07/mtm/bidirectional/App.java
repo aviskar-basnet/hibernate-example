@@ -1,4 +1,7 @@
-package com.aviskar.example.c02.oto;
+package com.aviskar.example.c07.mtm.bidirectional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,12 +23,28 @@ public class App {
 		SessionFactory sessionFactory = metadata.getSessionFactoryBuilder()
 				.build();
 
-		Girl sabina = new Girl("Sabina");
+		Set<Girl> girls = new HashSet<>();
+		Girl niti = new Girl("Niti");
+		girls.add(niti);
+		Girl asmi = new Girl("Asmi");
+		girls.add(asmi);
+
+		Set<Boy> boys = new HashSet<>();
+		Boy aashish = new Boy("Aashish");
+		boys.add(aashish);
 		Boy sabin = new Boy("Sabin");
-		sabin.setGirl(sabina);
+		boys.add(sabin);
+
+		niti.setBoys(boys);
+		asmi.setBoys(boys);
+		aashish.setGirls(girls);
+		sabin.setGirls(girls);
 
 		Session session = sessionFactory.openSession();
-		session.save(sabin);
+		session.beginTransaction();
+		session.persist(aashish);
+		session.persist(sabin);
+		session.getTransaction().commit();
 		session.close();
 
 		sessionFactory.close();

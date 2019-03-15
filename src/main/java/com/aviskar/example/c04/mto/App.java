@@ -1,4 +1,4 @@
-package com.aviskar.example.c02.oto;
+package com.aviskar.example.c04.mto;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,12 +20,17 @@ public class App {
 		SessionFactory sessionFactory = metadata.getSessionFactoryBuilder()
 				.build();
 
+		Boy bijay = new Boy("Bijay");
 		Girl sabina = new Girl("Sabina");
-		Boy sabin = new Boy("Sabin");
-		sabin.setGirl(sabina);
+		sabina.setBoy(bijay);
+		Girl rita = new Girl("Rita");
+		rita.setBoy(bijay);
 
 		Session session = sessionFactory.openSession();
-		session.save(sabin);
+		session.beginTransaction();
+		session.persist(sabina);
+		session.persist(rita);
+		session.getTransaction().commit();
 		session.close();
 
 		sessionFactory.close();

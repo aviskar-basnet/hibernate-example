@@ -1,4 +1,4 @@
-package com.aviskar.example.c03.otm;
+package com.aviskar.example.c07.mtm;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "boy")
-public class Boy {
+@Table(name = "girl")
+public class Girl {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +25,10 @@ public class Boy {
 
 	@Column
 	private String phoneNo;
+
+	public Girl(String name) {
+		this.name = name;
+	}
 
 	public Long getId() {
 		return id;

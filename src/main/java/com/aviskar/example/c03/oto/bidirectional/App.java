@@ -1,4 +1,4 @@
-package com.aviskar.example.c02.oto;
+package com.aviskar.example.c03.oto.bidirectional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -6,6 +6,9 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import com.aviskar.example.c02.oto.Boy;
+import com.aviskar.example.c02.oto.Girl;
 
 public class App {
 
