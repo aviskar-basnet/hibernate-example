@@ -1,4 +1,4 @@
-package com.aviskar.example.c07.mtm.bidirectional;
+package com.aviskar.example.c08.mtm.bidirectional;
 
 import java.util.HashSet;
 import java.util.Set;
