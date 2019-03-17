@@ -1,16 +1,15 @@
-package com.aviskar.example.c03.oto.bidirectional;
+package com.aviskar.example.c10.object.state;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "girl")
-public class Girl {
+@Table(name = "boy")
+public class Boy {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +27,10 @@ public class Girl {
 	@Column
 	private String phoneNo;
 
-	@OneToOne(mappedBy = "girl")
-	private Boy boy;
+	public Boy() {
+	}
 
-	public Girl(String name) {
+	public Boy(String name) {
 		this.name = name;
 	}
 
@@ -73,13 +72,5 @@ public class Girl {
 
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
-	}
-
-	public Boy getBoy() {
-		return boy;
-	}
-
-	public void setBoy(Boy boy) {
-		this.boy = boy;
 	}
 }

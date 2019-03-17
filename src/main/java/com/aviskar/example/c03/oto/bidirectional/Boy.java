@@ -17,6 +17,7 @@ public class Boy {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column
 	private String name;
 

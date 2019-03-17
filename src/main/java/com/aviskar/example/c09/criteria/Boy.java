@@ -3,6 +3,7 @@ package com.aviskar.example.c09.criteria;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +18,7 @@ public class Boy {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	@Column
 	private String name;
 
@@ -26,10 +28,10 @@ public class Boy {
 	@Column
 	private String address;
 
-	@Column
+	@Column(name = "phone_no")
 	private String phoneNo;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "girl_id")
 	private Girl girl;
 
