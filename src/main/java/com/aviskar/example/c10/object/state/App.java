@@ -2,20 +2,14 @@ package com.aviskar.example.c10.object.state;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class App {
 
 	public static void main(String[] args) throws InterruptedException {
-		StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
-		StandardServiceRegistry serviceRegistry = serviceRegistryBuilder.configure().build();
-		MetadataSources metadataSources = new MetadataSources(serviceRegistry);
-		metadataSources.addAnnotatedClass(Boy.class);
-		Metadata metadata = metadataSources.getMetadataBuilder().build();
-		SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
+		Configuration configuration = new Configuration().configure();
+		configuration.addAnnotatedClass(Boy.class);
+		SessionFactory sessionFactory = configuration.buildSessionFactory();
 
 		Boy sabin = new Boy("Sabin");
 		Boy bijay = new Boy("Bijay");
@@ -35,6 +29,5 @@ public class App {
 		session.close();
 
 		sessionFactory.close();
-		serviceRegistry.close();
 	}
 }

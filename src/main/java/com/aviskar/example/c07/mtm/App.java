@@ -5,23 +5,15 @@ import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class App {
 
 	public static void main(String[] args) {
-		StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
-		StandardServiceRegistry serviceRegistry = serviceRegistryBuilder
-				.configure().build();
-		MetadataSources metadataSources = new MetadataSources(serviceRegistry);
-		metadataSources.addAnnotatedClass(Boy.class);
-		metadataSources.addAnnotatedClass(Girl.class);
-		Metadata metadata = metadataSources.getMetadataBuilder().build();
-		SessionFactory sessionFactory = metadata.getSessionFactoryBuilder()
-				.build();
+		Configuration configuration = new Configuration().configure();
+		configuration.addAnnotatedClass(Boy.class);
+		configuration.addAnnotatedClass(Girl.class);
+		SessionFactory sessionFactory = configuration.buildSessionFactory();
 
 		Set<Girl> girls = new HashSet<>();
 		Girl niti = new Girl("Niti");
@@ -34,7 +26,7 @@ public class App {
 		boys.add(aashish);
 		Boy sabin = new Boy("Sabin");
 		boys.add(sabin);
-		
+
 		aashish.setGirls(girls);
 		sabin.setGirls(girls);
 
@@ -46,6 +38,5 @@ public class App {
 		session.close();
 
 		sessionFactory.close();
-		serviceRegistry.close();
 	}
 }
