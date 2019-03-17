@@ -1,4 +1,4 @@
-package com.aviskar.example.c09.criteria;
+package com.aviskar.example.c10.criteria;
 
 import java.util.List;
 

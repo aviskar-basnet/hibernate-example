@@ -1,21 +1,24 @@
-package com.aviskar.example.c09.criteria;
+package com.aviskar.example.c10.criteria;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "girl")
-public class Girl {
+@Table(name = "boy")
+public class Boy {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	@Column
 	private String name;
 
@@ -25,16 +28,17 @@ public class Girl {
 	@Column
 	private String address;
 
-	@Column
+	@Column(name = "phone_no")
 	private String phoneNo;
 
-	@OneToOne(mappedBy = "girl", fetch = FetchType.LAZY)
-	private Boy boy;
-	
-	public Girl() {
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "girl_id")
+	private Girl girl;
+
+	public Boy() {
 	}
 
-	public Girl(String name) {
+	public Boy(String name) {
 		this.name = name;
 	}
 
@@ -78,11 +82,11 @@ public class Girl {
 		this.phoneNo = phoneNo;
 	}
 
-	public Boy getBoy() {
-		return boy;
+	public Girl getGirl() {
+		return girl;
 	}
 
-	public void setBoy(Boy boy) {
-		this.boy = boy;
+	public void setGirl(Girl girl) {
+		this.girl = girl;
 	}
 }

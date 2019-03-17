@@ -1,4 +1,4 @@
-package com.aviskar.example.c10.object.state;
+package com.aviskar.example.c09.object.state;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
